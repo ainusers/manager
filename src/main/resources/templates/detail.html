@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>客户资源-管理平台</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <script src="../static/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+
+<div style="padding: 20px; height: 100vh; background-color: #F2F2F2;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">客户信息详情</div>
+                <div class="layui-card-body">
+                    <div class="layui-card"></div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">新增标记</label>
+                <div class="layui-input-block">
+                    <textarea id="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <button id="commitContent" type="button" class="layui-btn layui-btn-normal" style="display:block;margin:0 auto">提交</button>
+        </div>
+        <div class="layui-col-md6">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>标记内容-历史记录</legend>
+            </fieldset>
+            <ul class="layui-timeline"></ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    var receive
+    //JavaScript代码区域
+    layui.use(['element','form','table'], function(){
+        var element = layui.element,
+        form = layui.form,
+        table = layui.table;
+        var $ = layui.$;
+
+        $(function(){
+            function GetQueryValue(queryName) {
+                var query = decodeURI(window.location.search.substring(1));
+                var vars = query.split("&");
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == queryName) { return pair[1]; }
+                }
+                return null;
+            }
+
+            //使用方法
+            receive=GetQueryValue('pid');
+
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:6677/peopleData?id="+receive,
+                dataType:"json",
+                success:function(data){
+                    var money = data[0].money == 1 ? "有":"没有";
+                    var home = data[0].home == 1 ? "有":"没有";
+                    var car = data[0].car == 1 ? "有":"没有";
+                    var baodan = data[0].baodan == 1 ? "有":"没有";
+                    var shebao = data[0].shebao == 1 ? "有":"没有";
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">姓名：'+data[0].name+'</div>')
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">手机号：'+data[0].phone+'</div>')
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">是否有公积金：'+money+'</div>')
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">是否有房：'+home+'</div>')
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">是否有车：'+car+'</div>')
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">是否有保单：'+baodan+'</div>')
+                    $(".layui-card-body .layui-card").append('<div class="layui-card-body">是否有社保：'+shebao+'</div>')
+                },
+                error:function(jqXHR){
+                    alert("请求发生异常，请联系管理员");
+                }
+            });
+
+
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:6677/getContent?pid="+receive,
+                dataType:"json",
+                success:function(data){
+                    for(var i=0,length=data.length;i<length;i++){
+                        $(".layui-timeline").append('<li class="layui-timeline-item"> ' +
+                            '                    <h3 class="layui-timeline-title" style="margin-left: 20px">'+data[i].createtime+'</h3><i class="layui-icon layui-timeline-axis"></i> ' +
+                            '                    <div class="layui-timeline-content layui-text"> ' +
+                            '                        <div class="layui-timeline-title">'+data[i].content+'</div> ' +
+                            '                    </div> ' +
+                            '                </li>')
+                    }
+                },
+                error:function(jqXHR){
+                    alert("请求发生异常，请联系管理员");
+                }
+            });
+        })
+
+        $('#commitContent').on('click',function () {
+            var content = $('#content').val();
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:6677/addContent?pid="+receive+"&content="+content,
+                dataType:"json",
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(jqXHR){
+                    alert("请求发生异常，请联系管理员");
+                }
+            });
+        })
+
+
+    });
+</script>
+</body>
+</html>

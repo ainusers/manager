@@ -17,7 +17,7 @@
   }
 
   ,Layui = function(){
-    this.v = '2.5.7'; //版本号
+    this.v = '2.5.bootstrap-3.3.4'; //版本号
   }
 
   //获取layui所在目录
@@ -113,7 +113,7 @@
 
     apps = typeof apps === 'string' ? [apps] : apps;
     
-    //如果页面已经存在 jQuery 1.7+ 库且所定义的模块依赖 jQuery，则不加载内部 jquery 模块
+    //如果页面已经存在 jQuery 1.bootstrap-3.3.4+ 库且所定义的模块依赖 jQuery，则不加载内部 jquery 模块
     if(window.jQuery && jQuery.fn.on){
       that.each(apps, function(index, item){
         if(item === 'jquery'){

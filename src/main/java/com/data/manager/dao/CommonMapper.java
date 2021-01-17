@@ -28,7 +28,7 @@ public interface CommonMapper {
 
     /**
       * @author: tianyong
-      * @time: 2019/7/25 16:25
+      * @time: 2019/bootstrap-3.3.4/25 16:25
       * @description:公共查询方法
       * @注意：无序
       */
