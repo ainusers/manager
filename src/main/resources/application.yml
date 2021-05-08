@@ -9,7 +9,7 @@ spring:
   resources:
     static-locations: classpath:/
   datasource:
-    url: jdbc:mysql://localhost:3306/gsps?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://192.168.2.198:3306/mdm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: root
-    password: 12345678
+    password: zhang@123
     driver-class-name: com.mysql.cj.jdbc.Driver

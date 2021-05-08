@@ -28,10 +28,7 @@ public class BrokenService {
       * @description: 首页数据
       */
     public List<Map<String,Object>> PageData(){
-        String sql = "SELECT p.id,p.name,p.phone,m.content,m.createtime " +
-                "FROM mark m left join people p on m.pid = p.id " +
-                "WHERE (SELECT COUNT(1) FROM mark WHERE m.pid = pid AND m.createtime < createtime) < 1 " +
-                "ORDER BY pid,m.createtime DESC";
+        String sql = "select user_id,user_name,user_gender,user_age,user_national,user_identity,user_education,user_phone_number,user_addr,update_timestamp from employee_information\n";
         return commonMapper.queryDataForList(sql);
     }
 

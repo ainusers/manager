@@ -1,5 +1,6 @@
 package com.data.manager.controller;
 
+import com.data.manager.dao.CustomMapper;
 import com.data.manager.entity.Mark;
 import com.data.manager.service.BrokenService;
 import com.github.pagehelper.PageHelper;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +26,8 @@ public class BrokenApi {
 
     @Autowired
     private BrokenService brokenService;
+    @Autowired
+    private CustomMapper customMapper;
 
 
     /* 变量 */
@@ -42,6 +46,23 @@ public class BrokenApi {
         Map<String,Object> res = new HashMap(1);
         PageHelper.startPage(page,limit);
         List<Map<String, Object>> list = brokenService.PageData();
+        res.put("code",0);
+        res.put("count",list.size());
+        res.put("data",list);
+        return res;
+    }
+    /**
+     * @author: tianyong
+     * @time: 2021/1/16 17:03
+     * @description:
+     */
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping("/commonData")
+    public Map<String,Object> CommonData(int page,int limit,String content){
+        Map<String,Object> res = new HashMap(1);
+        PageHelper.startPage(page,limit);
+        List<LinkedHashMap<String, Object>> list = customMapper.queryDataForSortList(content);
         res.put("code",0);
         res.put("count",list.size());
         res.put("data",list);
