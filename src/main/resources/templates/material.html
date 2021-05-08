@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Indaas数据湖-管理平台</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <script src="../static/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+
+<div id="echo" style="display: none">
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">物料编号</label>
+        <div class="layui-input-block">
+            <input id="name" type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入物料编号" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">物料名称</label>
+        <div class="layui-input-block">
+            <input id="sex" type="text" name="sex" lay-verify="title" autocomplete="off" placeholder="请输入物料名称" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">单位</label>
+        <div class="layui-input-block">
+            <input id="age" type="text" name="age" lay-verify="title" autocomplete="off" placeholder="请输入单位" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">单价</label>
+        <div class="layui-input-block">
+            <input id="national" type="text" name="national" lay-verify="title" autocomplete="off" placeholder="请输入单价" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">数量</label>
+        <div class="layui-input-block">
+            <input id="card" type="text" name="card" lay-verify="title" autocomplete="off" placeholder="请输入数量" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">供应商</label>
+        <div class="layui-input-block">
+            <input id="edu" type="text" name="edu" lay-verify="title" autocomplete="off" placeholder="请输入供应商" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">入库日期</label>
+        <div class="layui-input-block">
+            <input id="phone" type="text" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入入库日期" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">收货人</label>
+        <div class="layui-input-block">
+            <input id="addr" type="text" name="addr" lay-verify="title" autocomplete="off" placeholder="请输入收货人" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+</div>
+
+<!-- 表单 -->
+<div style="padding: 5px 5px 0 5px">生产材料数据展示</div>
+<table class="layui-hide" id="list" lay-filter="demo"></table>
+
+
+<script type="text/html" id="extend">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="insert">新增</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="delete">删除</a>
+</script>
+<script type="text/javascript">
+    //JavaScript代码区域
+    layui.use(['element','form','table'], function(){
+        var element = layui.element,
+            form = layui.form,
+            table = layui.table;
+        var $ = layui.$;
+
+        table.render({
+            elem: '#list'
+            ,url:"http://localhost:6677/commonData?page=0&limit=10&content=select (@n:=@n%2B1) rank,mdm_material_information.* from mdm_material_information,(select @n:=0) tb"
+            ,cellMinWidth: 120
+            ,cols: [
+                [
+                 {field:'rank', width:100, title: '序号', sort: true}
+                ,{field:'material_number', width:120, title: '物料编号', sort: true, edit: 'text'}
+                ,{field:'material_name', width:120, title: '物料名称', sort: true, edit: 'text'}
+                ,{field:'material_unit', title: '单位', width: 100, sort: true, edit: 'text'}
+                ,{field:'material_unit_price', title: '单价', width: 100, sort: true, edit: 'text'}
+                ,{field:'material_amount', title: '数量', width: 100, sort: true, edit: 'text'}
+                ,{field:'material_supplier', title: '供应商', width: 100, sort: true, edit: 'text'}
+                ,{field:'material_storage_date', title: '入库日期', width: 130, sort: true, edit: 'text'}
+                ,{field:'material_consignee', title: '收货人', width: 100, sort: true, edit: 'text'}
+                ,{field:'update_timestamp', title: '更新时间', width: 150, sort: true, edit: 'text'}
+                ,{fixed: 'right', title:'扩展功能', width:120, align:'center', toolbar: '#extend'}
+                ]
+            ],
+            page: true,
+            id: 'pageContent'
+        });
+        table.on('tool(demo)', function(obj){
+            var data = obj.data,layEvent = obj.event;
+            if (layEvent === 'insert') {
+                var addLayer = layer.open({
+                    title: '新增数据'
+                    ,type: 1
+                    ,content: $('#echo')
+                    ,area: ['500px', '500px']
+                    ,btn: ['确定']
+                    ,yes: function(){
+                        $.ajax({
+                            type:"GET",
+                            url:"http://localhost:6677/commonData?page=0&limit=10&content=insert into mdm_material_information (material_number,material_name,material_unit,material_unit_price,material_amount,material_supplier,material_storage_date,material_consignee) value ('"+$("#name").val()+"','"+$("#sex").val()+"','"+$("#age").val()+"','"+$("#national").val()+"','"+$("#card").val()+"','"+$("#edu").val()+"','"+$("#phone").val()+"','"+$("#addr").val()+"')",
+                            dataType:"json",
+                            success:function(data){
+                                layer.close(addLayer);
+                                // 表格重载
+                                table.reload('pageContent',{
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
+                            },
+                            error:function(jqXHR){
+                                alert("请求发生异常，请联系管理员");
+                            }
+                        });
+                    }
+                })
+            }else if (layEvent === 'delete') {
+                $.ajax({
+                    type:"GET",
+                    url:"http://localhost:6677/commonData?page=0&limit=10&content=delete from mdm_material_information where material_id = '"+data.material_id+"'",
+                    dataType:"json",
+                    success:function(data){
+                        // 表格重载
+                        table.reload('pageContent',{
+                            page: {
+                                curr: 1
+                            }
+                        });
+                    },
+                    error:function(jqXHR){
+                        alert("请求发生异常，请联系管理员");
+                    }
+                });
+            }
+        });
+        //监听单元格编辑
+        table.on('edit(demo)', function(obj){
+            var value = obj.value,data = obj.data,field = obj.field;
+            layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:6677/commonData?page=0&limit=10&content=update mdm_material_information set "+field+" = '"+value+"' where material_id = '"+data.material_id+"'",
+                dataType:"json",
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(jqXHR){
+                    alert("请求发生异常，请联系管理员");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

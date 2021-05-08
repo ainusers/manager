@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Indaas数据湖-管理平台</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <script src="../static/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+
+<div id="echo" style="display: none">
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">供应商编号</label>
+        <div class="layui-input-block">
+            <input id="name" type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入供应商编号" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">公司名称</label>
+        <div class="layui-input-block">
+            <input id="sex" type="text" name="sex" lay-verify="title" autocomplete="off" placeholder="请输入公司名称" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">营业执照</label>
+        <div class="layui-input-block">
+            <input id="age" type="text" name="age" lay-verify="title" autocomplete="off" placeholder="请输入营业执照" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">注册地址</label>
+        <div class="layui-input-block">
+            <input id="national" type="text" name="national" lay-verify="title" autocomplete="off" placeholder="请输入注册地址" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">法人代表</label>
+        <div class="layui-input-block">
+            <input id="card" type="text" name="card" lay-verify="title" autocomplete="off" placeholder="请输入法人代表" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">公司类型</label>
+        <div class="layui-input-block">
+            <input id="edu" type="text" name="edu" lay-verify="title" autocomplete="off" placeholder="请输入公司类型" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">成立日期</label>
+        <div class="layui-input-block">
+            <input id="phone" type="text" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入成立日期" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">组织机构代码</label>
+        <div class="layui-input-block">
+            <input id="addr" type="text" name="addr" lay-verify="title" autocomplete="off" placeholder="请输入组织机构代码" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">注册资金</label>
+        <div class="layui-input-block">
+            <input id="a" type="text" name="national" lay-verify="title" autocomplete="off" placeholder="请输入注册资金" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">联系地址</label>
+        <div class="layui-input-block">
+            <input id="b" type="text" name="card" lay-verify="title" autocomplete="off" placeholder="请输入联系地址" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">联系电话</label>
+        <div class="layui-input-block">
+            <input id="c" type="text" name="edu" lay-verify="title" autocomplete="off" placeholder="请输入联系电话" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">供应商级别</label>
+        <div class="layui-input-block">
+            <input id="d" type="text" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入供应商级别" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+    <!-- 关键字查询 -->
+    <div class="layui-form-item" style="display: inline-block;">
+        <label class="layui-form-label" style="width: 80px;">审核人</label>
+        <div class="layui-input-block">
+            <input id="e" type="text" name="addr" lay-verify="title" autocomplete="off" placeholder="请输入" class="layui-input" style="width: 200px;">
+        </div>
+    </div>
+</div>
+
+<!-- 表单 -->
+<div style="padding: 5px 5px 0 5px">原料厂商数据展示</div>
+<table class="layui-hide" id="list" lay-filter="demo"></table>
+
+
+<script type="text/html" id="extend">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="insert">新增</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="delete">删除</a>
+</script>
+<script type="text/javascript">
+    //JavaScript代码区域
+    layui.use(['element','form','table'], function(){
+        var element = layui.element,
+            form = layui.form,
+            table = layui.table;
+        var $ = layui.$;
+
+        table.render({
+            elem: '#list'
+            ,url:"http://localhost:6677/commonData?page=0&limit=10&content=select (@n:=@n%2B1) rank,mdm_supplier.* from mdm_supplier,(select @n:=0) tb"
+            ,cellMinWidth: 120
+            ,cols: [
+                    [
+                 {field:'rank', width:120, title: '序号', sort: true}
+                ,{field:'supplier_number', width:120, title: '供应商编号', sort: true, edit: 'text'}
+                ,{field:'supplier_name', width:120, title: '公司名称', sort: true, edit: 'text'}
+                ,{field:'business_license_no', title: '营业执照', width: 150, sort: true, edit: 'text'}
+                ,{field:'registered_addres', title: '注册地址', width: 120, sort: true, edit: 'text'}
+                ,{field:'legal_representative', title: '法人代表', width: 120, sort: true, edit: 'text'}
+                ,{field:'company_type', title: '公司类型', width: 120, sort: true, edit: 'text'}
+                ,{field:'incorporation_date', title: '成立日期', width: 120, sort: true, edit: 'text'}
+                ,{field:'organization_code', title: '组织机构代码', width: 180, sort: true, edit: 'text'}
+                ,{field:'registered_capital', title: '注册资金', width: 120, sort: true, edit: 'text'}
+                ,{field:'contact_address', title: '联系地址', width: 120, sort: true, edit: 'text'}
+                ,{field:'contact_number', title: '联系电话', width: 120, sort: true, edit: 'text'}
+                ,{field:'level', title: '供应商级别', width: 120, sort: true, edit: 'text'}
+                ,{field:'reviewer', title: '审核人', width: 120, sort: true, edit: 'text'}
+                ,{field:'update_timestamp', title: '更新时间', width: 150, sort: true, edit: 'text'}
+                ,{fixed: 'right', title:'扩展功能', width:120, align:'center', toolbar: '#extend'}
+                ]
+            ],
+            page: true,
+            id: 'pageContent'
+        });
+        table.on('tool(demo)', function(obj){
+            var data = obj.data,layEvent = obj.event;
+            if (layEvent === 'insert') {
+                var addLayer = layer.open({
+                    title: '新增数据'
+                    ,type: 1
+                    ,btn: ['确定']
+                    ,content: $('#echo')
+                    ,area: ['500px', '500px']
+                    ,yes: function(){
+                        $.ajax({
+                            type:"GET",
+                            url:"http://localhost:6677/commonData?page=0&limit=10&content=insert into mdm_supplier (supplier_number,supplier_name,business_license_no,registered_addres,legal_representative,company_type,incorporation_date,organization_code,registered_capital,contact_address,contact_number,level,reviewer) value ('"+$("#name").val()+"','"+$("#sex").val()+"','"+$("#age").val()+"','"+$("#national").val()+"','"+$("#card").val()+"','"+$("#edu").val()+"','"+$("#phone").val()+"','"+$("#addr").val()+"','"+$("#a").val()+"','"+$("#b").val()+"','"+$("#c").val()+"','"+$("#d").val()+"','"+$("#e").val()+"')",
+                            dataType:"json",
+                            success:function(data){
+                                layer.close(addLayer);
+                                // 表格重载
+                                table.reload('pageContent',{
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
+                            },
+                            error:function(jqXHR){
+                                alert("请求发生异常，请联系管理员");
+                            }
+                        });
+                    }
+                })
+            }else if (layEvent === 'delete') {
+                $.ajax({
+                    type:"GET",
+                    url:"http://localhost:6677/commonData?page=0&limit=10&content=delete from mdm_supplier where supplier_id = '"+data.supplier_id+"'",
+                    dataType:"json",
+                    success:function(data){
+                        // 表格重载
+                        table.reload('pageContent',{
+                            page: {
+                                curr: 1
+                            }
+                        });
+                    },
+                    error:function(jqXHR){
+                        alert("请求发生异常，请联系管理员");
+                    }
+                });
+            }
+        });
+        //监听单元格编辑
+        table.on('edit(demo)', function(obj){
+            var value = obj.value,data = obj.data,field = obj.field;
+            layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:6677/commonData?page=0&limit=10&content=update mdm_supplier set "+field+" = '"+value+"' where supplier_id = '"+data.supplier_id+"'",
+                dataType:"json",
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(jqXHR){
+                    alert("请求发生异常，请联系管理员");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
