@@ -140,7 +140,7 @@
                 ,{field:'contact_number', title: '联系电话', width: 120, sort: true, edit: 'text'}
                 ,{field:'level', title: '供应商级别', width: 120, sort: true, edit: 'text'}
                 ,{field:'reviewer', title: '审核人', width: 120, sort: true, edit: 'text'}
-                ,{field:'update_timestamp', title: '更新时间', width: 150, sort: true, edit: 'text'}
+                ,{field:'update_timestamp', title: '更新时间', width: 180, sort: true,templet : "<div>{{layui.util.toDateString(new Date(d.update_timestamp).getTime()-3600 * 8 * 1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
                 ,{fixed: 'right', title:'扩展功能', width:120, align:'center', toolbar: '#extend'}
                 ]
             ],
