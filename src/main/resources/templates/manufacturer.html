@@ -198,7 +198,7 @@
         //监听单元格编辑
         table.on('edit(demo)', function(obj){
             var value = obj.value,data = obj.data,field = obj.field;
-            layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
+            // layer.msg('[ID: '+ data.user_id +'] ' + field + ' 字段更改为：'+ value);
             $.ajax({
                 type:"GET",
                 url:"http://localhost:6677/commonData?page=0&limit=10&content=update mdm_supplier set "+field+" = '"+value+"' where supplier_id = '"+data.supplier_id+"'",
